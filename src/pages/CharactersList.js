@@ -16,7 +16,15 @@ const GET_CHARACTERS = gql`
 export default function CharactersList() {
   const { error, data, loading } = useQuery(GET_CHARACTERS);
 
-  console.log({ error, loading, data });
+  //console.log({ error, loading, data });
+
+  if (loading) {
+    return <div>Loading</div>;
+  }
+
+  if (error) {
+    return <div>Something went wrong</div>;
+  }
 
   return <div></div>;
 }
