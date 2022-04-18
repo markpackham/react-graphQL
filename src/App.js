@@ -1,7 +1,12 @@
 import "./App.css";
+import CharactersList from "./pages/CharactersList";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <CharactersList />
+    </div>
+  );
 }
 
 export default App;
