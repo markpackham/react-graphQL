@@ -16,7 +16,7 @@ const GET_CHARACTER_LOCATIONS = gql`
 export default function Search() {
   const [name, setName] = useState("");
 
-  const [getLocations, { loading, error, data }] = useLazyQuery(
+  const [getLocations, { loading, error, data, called }] = useLazyQuery(
     GET_CHARACTER_LOCATIONS,
     {
       variables: {
@@ -27,12 +27,25 @@ export default function Search() {
 
   return (
     <div>
+      <p>
+        <a href="/">Home</a>
+      </p>
+      <p>Search for name eg "Beth Smith"</p>
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <button>Search</button>
+      <button onClick={() => getLocations()}>Search</button>
+      {loading && <div>Loading...</div>}
+      {error && <div>Something went wrong</div>}
+      {data && (
+        <ul>
+          {data.characters.results.map((character) => {
+            return <li>{character.location.name}</li>;
+          })}
+        </ul>
+      )}
     </div>
   );
 }

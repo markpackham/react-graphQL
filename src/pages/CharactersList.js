@@ -15,15 +15,20 @@ export default function CharactersList() {
   }
 
   return (
-    <div className="CharactersList">
-      {data.characters.results.map((character) => {
-        return (
-          <Link to={`/${character.id}`} key={character.id}>
-            <img src={character.image} alt={character.name} />
-            <h2>{character.name}</h2>
-          </Link>
-        );
-      })}
-    </div>
+    <>
+      <p>
+        <a href="/search">Search</a>
+      </p>
+      <div className="CharactersList">
+        {data.characters.results.map((character) => {
+          return (
+            <Link to={`/${character.id}`} key={character.id}>
+              <img src={character.image} alt={character.name} />
+              <h2>{character.name}</h2>
+            </Link>
+          );
+        })}
+      </div>
+    </>
   );
 }
