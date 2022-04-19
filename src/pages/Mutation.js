@@ -5,8 +5,8 @@ import { gql } from "@apollo/client";
 // So we need to use another API
 
 const CREATE_PRODUCT = gql`
-  mutation CreateProduct {
-    createProduct(record: { name: "Hotdog", quantityPerUnit: "3" }) {
+  mutation CreateProduct($name: String!, $quantityPerUnit: Int!) {
+    createProduct(record: { name: $name, quantityPerUnit: $quantityPerUnit }) {
       record {
         name
       }
