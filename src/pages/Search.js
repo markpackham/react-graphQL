@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { gql } from "@apollo/client";
+import { gql, useLazyQuery } from "@apollo/client";
 
 const GET_CHARACTER_LOCATIONS = gql`
   query GetCharacterLocations($name: String!) {
@@ -15,6 +15,15 @@ const GET_CHARACTER_LOCATIONS = gql`
 
 export default function Search() {
   const [name, setName] = useState("");
+
+  const [getLocations, { loading, error, data }] = useLazyQuery(
+    GET_CHARACTER_LOCATIONS,
+    {
+      variables: {
+        name,
+      },
+    }
+  );
 
   return (
     <div>
