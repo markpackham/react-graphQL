@@ -16,7 +16,8 @@ const GET_CHARACTER_LOCATIONS = gql`
 export default function Search() {
   const [name, setName] = useState("");
 
-  const [getLocations, { loading, error, data, called }] = useLazyQuery(
+  // "called" could be added to our object if we wanted
+  const [getLocations, { loading, error, data }] = useLazyQuery(
     GET_CHARACTER_LOCATIONS,
     {
       variables: {
@@ -43,7 +44,7 @@ export default function Search() {
         <ul>
           {data.characters.results.map((character) => {
             return (
-              <li key={character.location.id}>{character.location.name}</li>
+              <li key={character.location.name}>{character.location.name}</li>
             );
           })}
         </ul>

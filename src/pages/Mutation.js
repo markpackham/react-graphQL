@@ -1,8 +1,8 @@
 import React from "react";
-import { gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 // The Rick & Morty API can't handle Mutations (changes eg create/update/delete stuff)
-// So we need to use another API
+// So we need to use another API eg https://graphql-compose.herokuapp.com/northwind/
 
 const CREATE_PRODUCT = gql`
   mutation CreateProduct($name: String!, $quantityPerUnit: Int!) {
@@ -15,5 +15,18 @@ const CREATE_PRODUCT = gql`
 `;
 
 export default function Mutation() {
-  return <div>Mutation</div>;
+  const [createProduct, { data, loading, error }] = useMutation(
+    CREATE_PRODUCT,
+    {
+      variables: {
+        name: "hotdog",
+        quantityPerUnit: 2,
+      },
+    }
+  );
+  return (
+    <div>
+      <button onClick={() => createProduct()}></button>
+    </div>
+  );
 }
