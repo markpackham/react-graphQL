@@ -3,7 +3,7 @@ import { gql, useLazyQuery } from "@apollo/client";
 
 const GET_CHARACTER_LOCATIONS = gql`
   query GetCharacterLocations($name: String!) {
-    chracters(filter: { name: $name }) {
+    characters(filter: { name: $name }) {
       results {
         location {
           name
