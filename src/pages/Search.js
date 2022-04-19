@@ -30,7 +30,7 @@ export default function Search() {
       <p>
         <a href="/">Home</a>
       </p>
-      <p>Search for name eg "Beth Smith"</p>
+      <p>Search for name eg "Beth Smith" to get their locations</p>
       <input
         type="text"
         value={name}
@@ -42,7 +42,9 @@ export default function Search() {
       {data && (
         <ul>
           {data.characters.results.map((character) => {
-            return <li>{character.location.name}</li>;
+            return (
+              <li key={character.location.id}>{character.location.name}</li>
+            );
           })}
         </ul>
       )}
